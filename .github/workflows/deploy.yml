@@ -1,0 +1,61 @@
+# GitHub Pages 자동 배포 워크플로우
+# master 브랜치에 push 할 때마다 자동으로 빌드하고 배포합니다.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+
+# GitHub Pages 배포에 필요한 권한 설정
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 동시에 여러 배포가 실행되지 않도록 설정
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # 1단계: 빌드
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 의존성 설치
+        run: npm ci
+
+      - name: 정적 파일 빌드
+        run: npm run build
+        # next.config.ts의 output: 'export' 설정으로 out/ 폴더에 생성됩니다
+
+      - name: .nojekyll 파일 생성
+        # GitHub Pages가 _next 폴더를 Jekyll로 처리하지 않도록 막습니다
+        run: touch out/.nojekyll
+
+      - name: Pages 아티팩트 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  # 2단계: 배포
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: GitHub Pages 배포
+        uses: actions/deploy-pages@v4
+        id: deployment

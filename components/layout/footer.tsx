@@ -1,6 +1,7 @@
 // 페이지 하단에 고정되는 Footer 컴포넌트 (서버 컴포넌트)
 // 로고, 소개 문구, 소셜 링크, 저작권 정보를 표시합니다.
 
+import Link from "next/link";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
@@ -32,12 +33,12 @@ export default function Footer() {
                                 { label: "연락처", href: "/contact" },
                             ].map((link) => (
                                 <li key={link.href}>
-                                    <a
+                                    <Link
                                         href={link.href}
                                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

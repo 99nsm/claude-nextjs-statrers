@@ -1,6 +1,7 @@
 // 메인 홈 페이지
 // 방문자가 처음 보는 페이지로, 히어로 섹션과 기술 스택 소개를 표시합니다.
 
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -42,12 +43,12 @@ export default function Home() {
                         <div className="flex flex-col sm:flex-row gap-3 pt-2">
                             {/* 주요 버튼: 프로젝트 보기 */}
                             <Button asChild size="lg">
-                                <a href="/projects">프로젝트 보기</a>
+                                <Link href="/projects">프로젝트 보기</Link>
                             </Button>
 
                             {/* 보조 버튼: 연락하기 */}
                             <Button asChild variant="outline" size="lg">
-                                <a href="/contact">연락하기</a>
+                                <Link href="/contact">연락하기</Link>
                             </Button>
                         </div>
                     </div>
@@ -84,7 +85,7 @@ export default function Home() {
                     {/* 더 보기 링크 */}
                     <div className="text-center mt-8">
                         <Button asChild variant="ghost">
-                            <a href="/about">더 자세히 보기 →</a>
+                            <Link href="/about">더 자세히 보기 →</Link>
                         </Button>
                     </div>
                 </div>

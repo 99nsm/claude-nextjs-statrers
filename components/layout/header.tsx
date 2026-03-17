@@ -5,6 +5,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -32,9 +33,10 @@ export default function Header() {
                 <div className="flex h-16 items-center justify-between">
 
                     {/* 로고 (좌측) */}
-                    <a href="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
+                    {/* Link 컴포넌트는 basePath를 자동으로 붙여줍니다 */}
+                    <Link href="/" className="text-xl font-bold text-foreground hover:text-primary transition-colors">
                         포트폴리오
-                    </a>
+                    </Link>
 
                     {/* 데스크탑 네비게이션 (우측) - 모바일에서 숨김 */}
                     <nav className="hidden md:flex items-center gap-1">
@@ -43,19 +45,19 @@ export default function Header() {
                             const isActive = pathname === link.href;
 
                             return (
-                                <a
+                                <Link
                                     key={link.href}
                                     href={link.href}
                                     className={`
                                         px-4 py-2 rounded-md text-sm font-medium transition-colors
                                         ${isActive
-                                            ? "bg-accent text-accent-foreground"  // 활성: 배경색 있음
-                                            : "text-muted-foreground hover:text-foreground hover:bg-accent/50"  // 비활성: 배경 없음
+                                            ? "bg-accent text-accent-foreground"
+                                            : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                                         }
                                     `}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             );
                         })}
                     </nav>
@@ -80,7 +82,7 @@ export default function Header() {
                             const isActive = pathname === link.href;
 
                             return (
-                                <a
+                                <Link
                                     key={link.href}
                                     href={link.href}
                                     className={`
@@ -94,7 +96,7 @@ export default function Header() {
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             );
                         })}
                     </nav>
