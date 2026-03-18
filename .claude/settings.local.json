@@ -4,7 +4,9 @@
       "Bash(find C:Users나상민workspaceclaude-nextjs-statrers/app -type f -name *.tsx -o -name *.ts)",
       "Bash(npx shadcn@latest add card badge input textarea label --yes)",
       "Bash(npx tsc:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
