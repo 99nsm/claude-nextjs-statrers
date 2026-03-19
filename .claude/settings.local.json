@@ -1,12 +1,25 @@
 {
-  "permissions": {
-    "allow": [
-      "Bash(find C:Users나상민workspaceclaude-nextjs-statrers/app -type f -name *.tsx -o -name *.ts)",
-      "Bash(npx shadcn@latest add card badge input textarea label --yes)",
-      "Bash(npx tsc:*)",
-      "Bash(npm run:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)"
-    ]
-  }
+    "permissions": {
+        "allow": [
+            "Bash"
+        ]
+    },
+    "hooks": {
+        "Notification": [
+            {
+                "hooks": [{
+                    "type": "command",
+                    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/slack_notify.ps1 notification"
+                }]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [{
+                    "type": "command",
+                    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/slack_notify.ps1 stop"
+                }]
+            }
+        ]
+    }
 }
