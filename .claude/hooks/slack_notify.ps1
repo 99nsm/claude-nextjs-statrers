@@ -6,7 +6,11 @@
 [Console]::InputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
+# 프로세스 환경변수에 없으면 사용자 환경변수에서 직접 읽기
 $WEBHOOK_URL = $env:SLACK_WEBHOOK_URL
+if (-not $WEBHOOK_URL) {
+    $WEBHOOK_URL = [System.Environment]::GetEnvironmentVariable('SLACK_WEBHOOK_URL', 'User')
+}
 $HOOK_TYPE = if ($args.Count -gt 0) { $args[0] } else { 'unknown' }
 
 # Claude Code stdin JSON

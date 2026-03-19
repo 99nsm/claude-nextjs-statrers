@@ -9,7 +9,7 @@
             {
                 "hooks": [{
                     "type": "command",
-                    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/slack_notify.ps1 notification"
+                    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/나상민/workspace/claude-nextjs-statrers/.claude/hooks/slack_notify.ps1 notification"
                 }]
             }
         ],
@@ -17,7 +17,7 @@
             {
                 "hooks": [{
                     "type": "command",
-                    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/slack_notify.ps1 stop"
+                    "command": "powershell -NoProfile -ExecutionPolicy Bypass -File C:/Users/나상민/workspace/claude-nextjs-statrers/.claude/hooks/slack_notify.ps1 stop"
                 }]
             }
         ]
